@@ -35,7 +35,9 @@ def run_query(conn, query_number):
         result = conn.query(query_sql)
         answer = conn.read_csv(query_result)
         if (len(answer.except_(result)) > 0 or len(result.except_(answer)) > 0):
-             raise Exception("Query Result does not match with provided answer file. This benchmark is invalid!")
+            print(answer)
+            print(result)
+            raise Exception("Query Result does not match with provided answer file. This benchmark is invalid!")
         for i in range (5):
             start_time = time.time()
             conn.execute(query_sql)
