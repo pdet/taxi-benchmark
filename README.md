@@ -13,7 +13,7 @@ You will need a Python 3 environment with pip installed. All necessary dependenc
 To download the files, you simply have to run `./download.sh`. This will download the necessary 65 gzipped CSV files. Note that each file is approximately 1.8 GB, resulting in a total size of approximately 111 GB.
 
 ## Generate Uncompressed CSV File
-This benchmark runs on the gzipped CSV files but can also run on the fully uncompressed data as one CSV file. This script uncompresses each file and combines them into one large file. Note that the size of this uncompressed file is approximately 630 GB. You can run this by executing `./prepare.sh`.
+This benchmark runs on the gzipped CSV files but can also run on the fully uncompressed data as one CSV file. This script uncompresses each file and combines them into one large file. Note that the size of this uncompressed file is approximately 520 GB. You can run this by executing `./prepare.sh`.
 
 ## Run Benchmark
 The benchmark is depicted in the `benchmark.py` file and can be executed by running `python benchmark.py`.
