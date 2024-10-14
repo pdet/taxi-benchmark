@@ -1,0 +1,1 @@
+SELECT cab_type,COUNT(*) FROM trips GROUP BY cab_type ORDER BY ALL
