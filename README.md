@@ -4,10 +4,10 @@
 We recommend at least 2 TB of available disk space to fully run this benchmark (including downloading and preparing the data). There is not necessarily a memory constraint limit; the theoretical minimum limit should be about 32 MB for each working thread. However, the more memory you have available and the more threads you use, the faster this benchmark will run.
 
 ### Bash Scripts
-You will need `wget` and `gzip`.
+You will need `wget` and `gunzip`.
 
 ### Python Scripts
-You will need a Python 3 environment with pip installed. All necessary dependencies are listed in `python-dependencies.txt`.
+You will need a Python 3 environment with pip installed. All necessary dependencies are listed in `requirements.txt`. You should be able to install it with `pip install -r requirements.txt`.
 
 ## Download Files
 To download the files, you simply have to run `./download.sh`. This will download the necessary 65 gzipped CSV files. Note that each file is approximately 1.8 GB, resulting in a total size of approximately 111 GB.

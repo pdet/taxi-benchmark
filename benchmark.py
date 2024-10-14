@@ -34,7 +34,7 @@ def run_query(conn, query_number):
         # Validate result first
         result = conn.query(query_sql)
         answer = conn.read_csv(query_result)
-        if (len(answer.except_(result)) > 0 or len(result.except_(anwser)) > 0):
+        if (len(answer.except_(result)) > 0 or len(result.except_(answer)) > 0):
              raise Exception("Query Result does not match with provided answer file. This benchmark is invalid!")
         for i in range (5):
             start_time = time.time()
@@ -82,7 +82,7 @@ def benchmark(path, output_csv, monitoring_interval=1):
     # Write the resource usage data to CSV
     with open(decompressed_result, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Second', 'CPU Usage', 'Disk Read', 'Disk Write'])       
+        writer.writerow(['second', 'cpu_usage', 'disk_read', 'disk_write'])       
         for i in range(len(cpu_usage_data)):
             writer.writerow([i + 1, cpu_usage_data[i], disk_usage_data[i][0], disk_usage_data[i][1]])
 
