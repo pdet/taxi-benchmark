@@ -2,3 +2,4 @@ duckdb==1.1.1
 matplotlib
 psutil
 pandas
+requests
