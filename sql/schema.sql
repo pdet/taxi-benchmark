@@ -45,8 +45,8 @@ CREATE TABLE trips (
     dropoff_borocode        BIGINT,
     dropoff_boroname        VARCHAR,
     dropoff_ct2010          VARCHAR,
-    dropoff_boroct2010      VARCHAR,
-    dropoff_cdeligibil      BIGINT,
+    dropoff_boroct2010      BIGINT,
+    dropoff_cdeligibil      VARCHAR,
     dropoff_ntacode         VARCHAR,
     dropoff_ntaname         VARCHAR,
     dropoff_puma            VARCHAR);
