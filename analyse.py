@@ -9,7 +9,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 def analyse_benchmark(result_file, from_second = 90, to_second = 120): 
     con = duckdb.connect()
 
-    path = os.path.join(script_dir,result_file)
+    path = os.path.join(script_dir,'data',result_file)
     deviation_below_100 = con.query(f"SELECT 100 - cpu_usage as deviation FROM '{path}' WHERE deviation > 0")
     average_deviation_below_100 = con.execute('SELECT sum(deviation)/count(*) FROM deviation_below_100').fetchone()
 

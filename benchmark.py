@@ -64,8 +64,7 @@ def benchmark(path, output_csv, monitoring_interval=1):
         conn = duckdb.connect()
         # Some settings for benchmarking
         conn.execute("PRAGMA max_temp_directory_size='1500GiB'")
-        conn.execute("set preserve_insertion_order = false")
-       
+        conn.execute("SET preserve_insertion_order = false")   
         # Loading the data, and capturing HW statistics on last run
         with open(schema_path, 'r') as file:
             create_sql = file.read()
