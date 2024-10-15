@@ -8,7 +8,7 @@ import threading
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-schema_path = os.path.join(script_dir, 'sql/schema.sql')
+schema_path = os.path.join(script_dir, 'sql' ,'schema.sql')
 
 required_version = "1.1.1"
 if duckdb.__version__ != required_version:
@@ -34,9 +34,16 @@ def run_query(conn, query_number):
         # Validate result first
         result = conn.query(query_sql)
         answer = conn.read_csv(query_result)
+        if query_number == '2':
+            # We have to make the doubles prettier for comparisons
+            result = conn.query('SELECT passenger_count, avg_total_amount::DECIMAL(15,3) FROM result')
+            answer = conn.query('SELECT passenger_count, avg_total_amount::DECIMAL(15,3) FROM answer')
         if (len(answer.except_(result)) > 0 or len(result.except_(answer)) > 0):
-            print(answer)
-            print(result)
+            print("Query 0{query_number} failed")
+            print("Answer except result:")
+            print(answer.except_(result))
+            print("Result except answer:")
+            print(result.except_(answer))
             raise Exception("Query Result does not match with provided answer file. This benchmark is invalid!")
         for i in range (5):
             start_time = time.time()
@@ -55,9 +62,9 @@ def benchmark(path, output_csv, monitoring_interval=1):
     disk_usage_data = []
     for i in range(6): 
         conn = duckdb.connect()
-        # Some settings for bennchmarking
-        conn.execute("PRAGMA max_temp_directory_size='1500GiB'").fetchall()
-        conn.execute("set preserve_insertion_order = false").fetchall()
+        # Some settings for benchmarking
+        conn.execute("PRAGMA max_temp_directory_size='1500GiB'")
+        conn.execute("set preserve_insertion_order = false")
        
         # Loading the data, and capturing HW statistics on last run
         with open(schema_path, 'r') as file:
